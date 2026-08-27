@@ -235,32 +235,39 @@
     max-width: 560px;
   }
 
-  /* HOW IT WORKS */
+  /* HOW IT WORKS — gradient timeline */
   #how { background: var(--bg2); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
-  .how-header { text-align: center; margin-bottom: 56px; }
+  .how-header { text-align: center; margin-bottom: 64px; }
   .how-header .sec-lead { margin: 0 auto; }
   .steps {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 16px;
+    gap: 28px;
+    position: relative;
   }
-  .step {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 14px;
-    padding: 26px 22px;
+  .steps::before {
+    content: '';
+    position: absolute;
+    top: 18px;
+    left: 12%; right: 12%;
+    height: 2px;
+    background: linear-gradient(90deg, rgba(223,249,31,0.6), rgba(12,206,242,0.6));
   }
+  .step { text-align: center; position: relative; }
   .step-num {
-    width: 26px; height: 26px;
+    width: 38px; height: 38px;
     border-radius: 50%;
     background: var(--grad);
     color: #000;
-    font-size: 12.5px;
+    font-size: 14px;
     font-weight: 700;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 16px;
+    margin: 0 auto 18px;
+    box-shadow: 0 0 26px rgba(12,206,242,0.35);
+    position: relative;
+    z-index: 1;
   }
   .step-title { font-size: 15px; font-weight: 600; margin-bottom: 6px; }
   .step-desc { font-size: 13.5px; color: var(--muted); }
@@ -282,17 +289,47 @@
   .feat-card:hover { border-color: rgba(12,206,242,0.35); }
   .feat-title { font-size: 15px; font-weight: 600; margin-bottom: 6px; }
   .feat-desc { font-size: 13.5px; color: var(--muted); }
+  /* Platform section only: color-coded cards (What We Do keeps the plain style) */
+  #platform .feat-card {
+    border-top: 2px solid var(--cyan);
+    transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+  }
+  #platform .feat-card:nth-child(even) { border-top-color: var(--lime); }
+  #platform .feat-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 14px 34px rgba(0,0,0,0.45);
+  }
+  #platform .feat-card:nth-child(odd):hover { border-color: rgba(12,206,242,0.4); border-top-color: var(--cyan); }
+  #platform .feat-card:nth-child(even):hover { border-color: rgba(223,249,31,0.4); border-top-color: var(--lime); }
+  #platform .feat-tick { font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--cyan); margin-bottom: 10px; }
+  #platform .feat-card:nth-child(even) .feat-tick { color: var(--lime); }
 
-  /* PRICING */
-  #pricing { background: var(--bg2); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+  /* PRICING — gradient-framed card over a lime glow */
+  #pricing {
+    background: var(--bg2);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
+  }
+  #pricing::before {
+    content: '';
+    position: absolute;
+    width: 640px; height: 340px;
+    left: 50%; top: 58%;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(ellipse, rgba(223,249,31,0.09) 0%, transparent 70%);
+    pointer-events: none;
+  }
   .price-card {
     max-width: 640px;
     margin: 0 auto;
-    background: var(--card);
-    border: 1px solid var(--border);
+    border: 1px solid transparent;
+    background: linear-gradient(var(--card), var(--card)) padding-box, var(--grad) border-box;
     border-radius: 18px;
     padding: 44px 48px;
     text-align: center;
+    position: relative;
   }
   .price-zeros {
     display: flex;
@@ -337,37 +374,85 @@
     gap: 64px;
     align-items: center;
   }
-  .mkt-list { list-style: none; margin-top: 28px; }
-  .mkt-list li {
-    padding: 14px 0;
-    border-bottom: 1px solid rgba(255,255,255,0.07);
+  #marketing {
+    background: linear-gradient(180deg, rgba(12,206,242,0.06) 0%, transparent 55%);
   }
-  .mkt-list li:last-child { border-bottom: none; }
+  .mkt-list { list-style: none; margin-top: 28px; display: flex; flex-direction: column; gap: 12px; }
+  .mkt-list li {
+    padding: 18px 22px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--cyan);
+    border-radius: 12px;
+    transition: transform 0.2s, border-color 0.2s;
+  }
+  .mkt-list li:nth-child(2) { border-left-color: var(--lime); }
+  .mkt-list li:hover { transform: translateX(6px); }
   .mkt-item-title { font-size: 14.5px; font-weight: 600; margin-bottom: 3px; }
   .mkt-item-desc { font-size: 13.5px; color: var(--muted); }
 
-  /* FAQ */
+  /* FAQ — accordion */
   #faq { background: var(--bg2); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
-  .faq-header { text-align: center; margin-bottom: 48px; }
-  .faq-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+  .faq-header { text-align: center; margin-bottom: 40px; }
+  .faq-list { max-width: 680px; margin: 0 auto; }
+  .faq-item { border-bottom: 1px solid var(--border); }
+  .faq-item summary {
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     gap: 16px;
+    padding: 18px 4px;
+    font-size: 15px;
+    font-weight: 600;
   }
-  .faq-card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 14px;
-    padding: 26px 24px;
-  }
-  .faq-q { font-size: 14.5px; font-weight: 600; margin-bottom: 8px; }
-  .faq-a { font-size: 13.5px; color: var(--muted); }
+  .faq-item summary::-webkit-details-marker { display: none; }
+  .faq-item summary::after { content: '+'; color: var(--lime); font-size: 22px; font-weight: 400; line-height: 1; flex-shrink: 0; }
+  .faq-item[open] summary::after { content: '\2212'; color: var(--cyan); }
+  .faq-item summary:hover { color: var(--cyan); }
+  .faq-a { font-size: 14px; color: var(--muted); padding: 0 4px 18px; max-width: 60ch; }
 
-  /* CTA */
-  #cta { text-align: center; padding: 110px 0; }
-  .cta-h2 { font-size: clamp(28px, 3.6vw, 42px); margin-bottom: 14px; }
-  .cta-sub { font-size: 15.5px; color: var(--muted); margin-bottom: 36px; }
-  .cta-note { font-size: 12.5px; color: var(--faint); margin-top: 18px; }
+  /* CTA — full gradient panel */
+  #cta { padding: 100px 0; }
+  .cta-panel {
+    background: var(--grad);
+    border-radius: 22px;
+    padding: 64px 48px;
+    text-align: center;
+    color: #000;
+  }
+  .cta-h2 { font-size: clamp(28px, 3.6vw, 42px); margin-bottom: 14px; color: #000; }
+  .cta-sub { font-size: 15.5px; color: rgba(0,0,0,0.65); margin-bottom: 36px; }
+  .cta-note { font-size: 12.5px; color: rgba(0,0,0,0.55); margin-top: 18px; }
+  .btn-dark {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #000;
+    color: #fff;
+    padding: 12px 26px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 14.5px;
+    text-decoration: none;
+    transition: opacity 0.2s, transform 0.2s;
+  }
+  .btn-dark:hover { opacity: 0.82; transform: translateY(-1px); }
+  .btn-outline-dark {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: #000;
+    padding: 12px 26px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 14.5px;
+    text-decoration: none;
+    border: 1px solid rgba(0,0,0,0.4);
+    transition: background 0.2s;
+  }
+  .btn-outline-dark:hover { background: rgba(0,0,0,0.08); }
 
   /* FOOTER */
   footer {
@@ -407,7 +492,9 @@
     #hero { padding: 120px 20px 70px; }
     section { padding: 64px 0; }
     .steps { grid-template-columns: 1fr 1fr; }
-    .features-grid, .faq-grid, .wwd-grid { grid-template-columns: 1fr; }
+    .steps::before { display: none; }
+    .features-grid, .wwd-grid { grid-template-columns: 1fr; }
+    .cta-panel { padding: 44px 24px; }
     .mkt-layout { grid-template-columns: 1fr; gap: 36px; }
     .price-card { padding: 32px 24px; }
     .footer-links { gap: 36px; }
@@ -556,26 +643,32 @@
     </div>
     <div class="features-grid reveal">
       <div class="feat-card">
+        <div class="feat-tick">Commerce</div>
         <div class="feat-title">DTC Storefront</div>
         <div class="feat-desc">Native buy-now checkout with gift options and subscriptions — no redirects or third-party carts.</div>
       </div>
       <div class="feat-card">
+        <div class="feat-tick">Logistics</div>
         <div class="feat-title">Nationwide Fulfillment</div>
         <div class="feat-desc">A licensed retailer network across the country with real-time inventory sync and competitive shipping rates.</div>
       </div>
       <div class="feat-card">
+        <div class="feat-tick">Compliance</div>
         <div class="feat-title">Compliance Engine</div>
         <div class="feat-desc">Full 3-tier compliance, state-by-state legality handling, and age verification — automatic on every order.</div>
       </div>
       <div class="feat-card">
+        <div class="feat-tick">Payments</div>
         <div class="feat-title">Payments &amp; Routing</div>
         <div class="feat-desc">Automated payments, smart order splitting, and intelligent retailer routing on every purchase.</div>
       </div>
       <div class="feat-card">
+        <div class="feat-tick">Data</div>
         <div class="feat-title">Customer Data Ownership</div>
         <div class="feat-desc">Your customer list, purchase history, and analytics are 100% yours — export anytime, no marketplace dependency.</div>
       </div>
       <div class="feat-card">
+        <div class="feat-tick">Retail</div>
         <div class="feat-title">Marketplace &amp; Retail Reach</div>
         <div class="feat-desc">Listings on 50+ marketplaces plus brick &amp; mortar placement with shelf talkers, displays, and banners.</div>
       </div>
@@ -644,19 +737,19 @@
       <div class="sec-label">FAQ</div>
       <h2 class="sec-h2">Common questions</h2>
     </div>
-    <div class="faq-grid reveal">
-      <div class="faq-card">
-        <div class="faq-q">Is this compliant?</div>
+    <div class="faq-list reveal">
+      <details class="faq-item" open>
+        <summary>Is this compliant?</summary>
         <div class="faq-a">Yes. Tierlink operates within the 3-tier system through licensed retailer partnerships. Every sale is legally compliant in every state we operate in.</div>
-      </div>
-      <div class="faq-card">
-        <div class="faq-q">How fast is shipping?</div>
+      </details>
+      <details class="faq-item">
+        <summary>How fast is shipping?</summary>
         <div class="faq-a">Our retailer network is distributed nationally, so most orders arrive in 2–5 business days at competitive rates.</div>
-      </div>
-      <div class="faq-card">
-        <div class="faq-q">What does it really cost?</div>
+      </details>
+      <details class="faq-item">
+        <summary>What does it really cost?</summary>
         <div class="faq-a">You set your own ad budget and pay a competitive fulfillment margin per order. No setup fees, no monthly management fees, no surprises.</div>
-      </div>
+      </details>
     </div>
   </div>
 </section>
@@ -664,13 +757,15 @@
 <!-- CTA -->
 <section id="cta">
   <div class="section-inner reveal">
-    <h2 class="cta-h2">Ready to grow your brand?</h2>
-    <p class="cta-sub">Join 165+ alcohol brands already selling direct to consumer with Tierlink.</p>
-    <div style="display:flex; justify-content:center; gap:14px; flex-wrap:wrap;">
-      <a href="mailto:demo@tierlink.io" class="btn-primary">Book a Free Demo</a>
-      <a href="mailto:hello@tierlink.io" class="btn-ghost">Contact Sales</a>
+    <div class="cta-panel">
+      <h2 class="cta-h2">Ready to grow your brand?</h2>
+      <p class="cta-sub">Join 165+ alcohol brands already selling direct to consumer with Tierlink.</p>
+      <div style="display:flex; justify-content:center; gap:14px; flex-wrap:wrap;">
+        <a href="mailto:demo@tierlink.io" class="btn-dark">Book a Free Demo</a>
+        <a href="mailto:hello@tierlink.io" class="btn-outline-dark">Contact Sales</a>
+      </div>
+      <p class="cta-note">No contracts. No setup fees.</p>
     </div>
-    <p class="cta-note">No contracts. No setup fees.</p>
   </div>
 </section>
 
