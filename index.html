@@ -454,6 +454,69 @@
   }
   .btn-outline-dark:hover { background: rgba(0,0,0,0.08); }
 
+  /* GETTING STARTED — vertical roadmap */
+  .roadmap { max-width: 680px; margin: 0 auto; position: relative; padding-left: 36px; }
+  .roadmap::before {
+    content: '';
+    position: absolute;
+    left: 10px; top: 8px; bottom: 8px;
+    width: 2px;
+    background: linear-gradient(180deg, var(--lime), var(--cyan));
+    opacity: 0.55;
+  }
+  .road-item { position: relative; padding-bottom: 34px; }
+  .road-item:last-child { padding-bottom: 0; }
+  .road-item::before {
+    content: '';
+    position: absolute;
+    left: -32px; top: 4px;
+    width: 14px; height: 14px;
+    border-radius: 50%;
+    background: var(--cyan);
+    box-shadow: 0 0 16px rgba(12,206,242,0.5);
+  }
+  .road-item:nth-child(even)::before { background: var(--lime); box-shadow: 0 0 16px rgba(223,249,31,0.4); }
+  .road-when { font-size: 11.5px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--cyan); margin-bottom: 5px; }
+  .road-item:nth-child(even) .road-when { color: var(--lime); }
+  .road-title { font-size: 16px; font-weight: 600; margin-bottom: 5px; }
+  .road-desc { font-size: 14px; color: var(--muted); }
+
+  /* DEMO FORM */
+  #demo { background: var(--bg2); border-top: 1px solid var(--border); }
+  .demo-card {
+    max-width: 720px;
+    margin: 0 auto;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 40px 44px;
+  }
+  .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .field { display: flex; flex-direction: column; gap: 6px; }
+  .field.full { grid-column: 1 / -1; }
+  .field label { font-size: 12.5px; font-weight: 600; color: rgba(255,255,255,0.7); }
+  .field label span { color: var(--lime); }
+  .field input, .field select, .field textarea {
+    background: #0a0a0a;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 11px 14px;
+    color: #fff;
+    font-family: inherit;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .field input:focus, .field select:focus, .field textarea:focus { border-color: var(--cyan); }
+  .field textarea { min-height: 96px; resize: vertical; }
+  .demo-submit { margin-top: 22px; width: 100%; justify-content: center; border: none; cursor: pointer; font-family: inherit; }
+  .form-note { font-size: 12.5px; color: var(--faint); margin-top: 14px; text-align: center; }
+  .form-success { display: none; text-align: center; padding: 24px 8px; }
+  .form-success.show { display: block; }
+  .form-success h3 { font-size: 20px; margin-bottom: 10px; }
+  .form-success h3 span { color: var(--lime); }
+  .form-success p { font-size: 14px; color: var(--muted); max-width: 46ch; margin: 0 auto; }
+
   /* FOOTER */
   footer {
     padding: 48px 40px 32px;
@@ -495,6 +558,8 @@
     .steps::before { display: none; }
     .features-grid, .wwd-grid { grid-template-columns: 1fr; }
     .cta-panel { padding: 44px 24px; }
+    .form-grid { grid-template-columns: 1fr; }
+    .demo-card { padding: 28px 20px; }
     .mkt-layout { grid-template-columns: 1fr; gap: 36px; }
     .price-card { padding: 32px 24px; }
     .footer-links { gap: 36px; }
@@ -515,7 +580,7 @@
     <li><a href="#pricing">Pricing</a></li>
     <li><a href="#marketing">Marketing</a></li>
     <li><a href="#faq">FAQ</a></li>
-    <li><a href="#cta" class="btn-nav">Book a Demo</a></li>
+    <li><a href="#demo" class="btn-nav">Book a Demo</a></li>
   </ul>
 </nav>
 
@@ -526,8 +591,8 @@
   <h1 class="hero-headline">Sell your alcohol brand <span class="grad-text">direct to consumer</span> — compliantly, nationwide.</h1>
   <p class="hero-sub">Tierlink gives alcohol brands a branded online storefront, licensed fulfillment, built-in compliance, and managed marketing — all in one platform.</p>
   <div class="hero-ctas">
-    <a href="#cta" class="btn-primary">Book a Free Demo</a>
-    <a href="#how" class="btn-ghost">See How It Works</a>
+    <a href="#demo" class="btn-primary">Book a Free Demo</a>
+    <a href="#getting-started" class="btn-ghost">See How It Works</a>
   </div>
   <div class="stat-row">
     <div class="stat"><div class="stat-num">165+</div><div class="stat-label">Brands live</div></div>
@@ -633,6 +698,42 @@
   </div>
 </section>
 
+<!-- GETTING STARTED -->
+<section id="getting-started">
+  <div class="section-inner">
+    <div class="reveal" style="text-align:center; margin-bottom:56px;">
+      <div class="sec-label">Getting Started</div>
+      <h2 class="sec-h2">From first call to first sale in 30 days</h2>
+      <p class="sec-lead" style="margin:0 auto;">Here's exactly what happens after you book a demo — no long onboarding, no heavy lift on your side.</p>
+    </div>
+    <div class="roadmap reveal">
+      <div class="road-item">
+        <div class="road-when">Day 1 — Kickoff call</div>
+        <div class="road-title">We learn your brand</div>
+        <div class="road-desc">Your goals, your products, your current setup — then we map the rollout plan together.</div>
+      </div>
+      <div class="road-item">
+        <div class="road-when">Week 1 — Checkout live</div>
+        <div class="road-title">Compliant checkout installed on your site</div>
+        <div class="road-desc">Our checkout button goes live on your website with age verification and state-by-state compliance configured.</div>
+      </div>
+      <div class="road-item">
+        <div class="road-when">Week 2 — Growth on</div>
+        <div class="road-title">Marketplaces &amp; marketing launch</div>
+        <div class="road-desc">Your products get featured across 50+ marketplaces while our team launches your Google, Bing, Meta, email &amp; SMS campaigns.</div>
+      </div>
+      <div class="road-item">
+        <div class="road-when">Day 30 — Scaling</div>
+        <div class="road-title">Optimize and grow</div>
+        <div class="road-desc">Orders are flowing. We review the results with you — data you own — and double down on what's working.</div>
+      </div>
+    </div>
+    <div class="reveal" style="text-align:center; margin-top:48px;">
+      <a href="#demo" class="btn-primary">Start With a Free Demo</a>
+    </div>
+  </div>
+</section>
+
 <!-- PLATFORM -->
 <section id="platform">
   <div class="section-inner">
@@ -697,7 +798,7 @@
         <li>Full compliance infrastructure included</li>
         <li>Complete customer data ownership</li>
       </ul>
-      <a href="#cta" class="btn-primary">Book a Demo</a>
+      <a href="#demo" class="btn-primary">Book a Demo</a>
       <p class="price-note">No contracts. No lock-in.</p>
     </div>
   </div>
@@ -761,10 +862,68 @@
       <h2 class="cta-h2">Ready to grow your brand?</h2>
       <p class="cta-sub">Join 165+ alcohol brands already selling direct to consumer with Tierlink.</p>
       <div style="display:flex; justify-content:center; gap:14px; flex-wrap:wrap;">
-        <a href="mailto:demo@tierlink.io" class="btn-dark">Book a Free Demo</a>
+        <a href="#demo" class="btn-dark">Book a Free Demo</a>
         <a href="mailto:hello@tierlink.io" class="btn-outline-dark">Contact Sales</a>
       </div>
       <p class="cta-note">No contracts. No setup fees.</p>
+    </div>
+  </div>
+</section>
+
+<!-- BOOK A DEMO FORM -->
+<section id="demo">
+  <div class="section-inner">
+    <div class="reveal" style="text-align:center; margin-bottom:44px;">
+      <div class="sec-label">Book a Free Demo</div>
+      <h2 class="sec-h2">Tell us about your brand</h2>
+      <p class="sec-lead" style="margin:0 auto;">Fill this out and we'll set up a call to walk you through everything.</p>
+    </div>
+    <div class="demo-card reveal">
+      <form id="demo-form">
+        <div class="form-grid">
+          <div class="field">
+            <label for="f-name">Your name <span>*</span></label>
+            <input id="f-name" name="name" type="text" required autocomplete="name">
+          </div>
+          <div class="field">
+            <label for="f-brand">Brand name <span>*</span></label>
+            <input id="f-brand" name="brand" type="text" required autocomplete="organization">
+          </div>
+          <div class="field">
+            <label for="f-email">Email <span>*</span></label>
+            <input id="f-email" name="email" type="email" required autocomplete="email">
+          </div>
+          <div class="field">
+            <label for="f-phone">Phone <span>*</span></label>
+            <input id="f-phone" name="phone" type="tel" required autocomplete="tel">
+          </div>
+          <div class="field">
+            <label for="f-category">Category <span>*</span></label>
+            <select id="f-category" name="category" required>
+              <option value="" selected disabled>Select one…</option>
+              <option>Spirits</option>
+              <option>Wine</option>
+              <option>Beer</option>
+              <option>RTD / Seltzer</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="f-site">Brand website</label>
+            <input id="f-site" name="website" type="url" placeholder="https://" autocomplete="url">
+          </div>
+          <div class="field full">
+            <label for="f-msg">Anything else we should know?</label>
+            <textarea id="f-msg" name="message" placeholder="Where you sell today, goals, timeline…"></textarea>
+          </div>
+        </div>
+        <button type="submit" class="btn-primary demo-submit">Request My Free Demo</button>
+        <p class="form-note">We'll get back to you within one business day. No contracts, no fees.</p>
+      </form>
+      <div class="form-success" id="form-success">
+        <h3>Almost done <span>✓</span></h3>
+        <p>We just opened a pre-filled email to demo@tierlink.io in your mail app — hit send and we'll get back to you within one business day.</p>
+      </div>
     </div>
   </div>
 </section>
@@ -807,6 +966,29 @@
     });
   }, { threshold: 0.1 });
   revealEls.forEach(el => observer.observe(el));
+
+  // Demo request form: validate, then open a pre-filled email to demo@tierlink.io
+  const demoForm = document.getElementById('demo-form');
+  demoForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const d = Object.fromEntries(new FormData(demoForm));
+    const body = [
+      'Name: ' + d.name,
+      'Brand: ' + d.brand,
+      'Email: ' + d.email,
+      'Phone: ' + d.phone,
+      'Category: ' + d.category,
+      'Website: ' + (d.website || '-'),
+      '',
+      'Notes:',
+      d.message || '-'
+    ].join('\n');
+    window.location.href = 'mailto:demo@tierlink.io'
+      + '?subject=' + encodeURIComponent('Demo request — ' + d.brand)
+      + '&body=' + encodeURIComponent(body);
+    demoForm.style.display = 'none';
+    document.getElementById('form-success').classList.add('show');
+  });
 </script>
 </body>
 </html>
