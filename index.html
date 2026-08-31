@@ -909,7 +909,7 @@
       </form>
       <div class="form-success" id="form-success">
         <h3>Almost done <span>✓</span></h3>
-        <p>We just opened a pre-filled email to demo@tierlink.io in your mail app — hit send and we'll get back to you within one business day.</p>
+        <p>We just opened a pre-filled email to inbound@tierlink.io in your mail app — hit send and we'll get back to you within one business day.</p>
       </div>
     </div>
   </div>
@@ -934,7 +934,7 @@
         <div class="footer-col">
           <div class="footer-col-title">Company</div>
           <a href="#faq">FAQ</a>
-          <a href="mailto:hello@tierlink.io">Contact</a>
+          <a href="mailto:inbound@tierlink.io">Contact</a>
         </div>
       </div>
     </div>
@@ -954,7 +954,7 @@
   }, { threshold: 0.1 });
   revealEls.forEach(el => observer.observe(el));
 
-  // Demo request form: validate, then open a pre-filled email to demo@tierlink.io
+  // Demo request form: validate, then open a pre-filled email to inbound@tierlink.io
   const demoForm = document.getElementById('demo-form');
   demoForm.addEventListener('submit', (e) => {
     e.preventDefault();
@@ -970,7 +970,7 @@
       'Notes:',
       d.message || '-'
     ].join('\n');
-    window.location.href = 'mailto:demo@tierlink.io'
+    window.location.href = 'mailto:inbound@tierlink.io'
       + '?subject=' + encodeURIComponent('Demo request — ' + d.brand)
       + '&body=' + encodeURIComponent(body);
     demoForm.style.display = 'none';
